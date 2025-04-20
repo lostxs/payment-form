@@ -1,0 +1,14 @@
+{
+	"editor.formatOnSave": true,
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"html.validate.scripts": false,
+	"files.associations": {
+		"*.ejs": "html"
+	},
+	"emmet.includeLanguages": {
+		"ejs": "html"
+	}
+}

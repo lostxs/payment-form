@@ -1,0 +1,7 @@
+{
+	"recommendations": [
+		"esbenp.prettier-vscode",
+		"DigitalBrainstem.javascript-ejs-support",
+		"ms-azuretools.vscode-docker"
+	]
+}

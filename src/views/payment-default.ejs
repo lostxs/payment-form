@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+		<script src="/js/main.js" type="module"></script>
+		<link rel="stylesheet" href="/css/light.css" />
+		<title>Default payment form</title>
+	</head>
+	<body class="min-w-[375px] flex flex-col items-center size-full">
+		<div class="container mx-auto py-10">
+			<div class="grid grid-rows-1 gap-10 h-full lg:grid-cols-2">
+				<div
+					class="rounded-lg border bg-(--card) text-(--card-foreground) shadow-sm h-fit"
+				>
+					<div class="flex flex-col space-y-1.5 p-6">
+						<span class="text-(--muted-foreground) text-sm">
+							Партнер:
+						</span>
+						<h2 class="font-semibold text-xl">
+							<span id="partner-name"> <%= partner.name %> </span>
+						</h2>
+					</div>
+
+					<div class="p-6 pt-0 space-y-6">
+						<span class="text-(--muted-foreground) text-sm"
+							>Номер заказа</span
+						>
+						<h2 class="font-semibold text-xl">
+							<span class="tabular-nums slashed-zero">
+								#<%= order.indexNumber %>
+							</span>
+						</h2>
+					</div>
+
+					<div
+						id="order-summary"
+						class="p-6 pt-0 space-y-6 group/summary"
+						data-currency="<%= order.currency %>"
+						data-amount="<%= order.amount %>"
+						data-need-commission="<%= order.needCommission %>"
+						data-commission="0"
+						data-total-amount="<%= order.amount %>"
+					>
+						<% if (order.needCommission) { %>
+						<div class="space-y-2">
+							<div class="flex justify-between text-sm">
+								<span>Подытог:</span>
+								<div>
+									<span
+										id="amount"
+										class="tabular-nums slashed-zero"
+									>
+										<%= order.formattedAmount %>
+									</span>
+								</div>
+							</div>
+							<div
+								class="flex justify-between text-sm group-data-[commission=0]/summary:hidden"
+							>
+								<span>Комиссия:</span>
+								<div>
+									<span
+										id="commission"
+										class="tabular-nums slashed-zero"
+									>
+									</span>
+								</div>
+							</div>
+						</div>
+						<% } %>
+
+						<div
+							class="shrink-0 bg-(--border) h-[1px] w-full"
+						></div>
+
+						<div class="flex justify-between font-medium">
+							<span>Сумма:</span>
+							<div>
+								<span
+									id="total"
+									class="tabular-nums slashed-zero"
+								>
+									<%= order.formattedAmount %>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div
+					class="rounded-lg border bg-(--card) text-(--card-foreground) shadow-sm relative"
+				>
+					<div class="flex flex-col space-y-1.5 p-6">
+						<h3
+							class="text-2xl font-semibold leading-none tracking-tight flex items-center gap-2"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="h-5 w-5 self-end"
+							>
+								<rect
+									width="20"
+									height="14"
+									x="2"
+									y="5"
+									rx="2"
+								></rect>
+								<line x1="2" x2="22" y1="10" y2="10"></line>
+							</svg>
+							<span>Оплата картой</span>
+						</h3>
+						<p class="text-sm text-(--muted-foreground)">
+							Введите данные карты для оплаты
+						</p>
+					</div>
+
+					<div class="p-6 pt-0">
+						<div
+							id="payment-errors"
+							class="flex flex-col gap-2 hidden bg-(--destructive-foreground)/10 rounded-md p-2 mb-6"
+						></div>
+
+						<form id="paymentform" class="space-y-6">
+							<input
+								id="uid"
+								type="hidden"
+								name="uid"
+								value="<%= order.id %>"
+							/>
+							<div class="grid grid-cols-2">
+								<label class="relative col-span-2">
+									<span
+										class="text-(--muted-foreground) text-sm"
+									>
+										Информация о карте
+									</span>
+									<div class="relative">
+										<input
+											id="cardnum"
+											name="cardnum"
+											type="tel"
+											class="flex h-10 w-full bg-transparent px-3 py-1 text-base shadow-sm transition-colors placeholder:text-(--muted-foreground) focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-(--ring) disabled:cursor-not-allowed disabled:opacity-50 md:text-sm rounded-t-lg border border-(--input)"
+											placeholder="1234 1234 1234 1234"
+											spellcheck="false"
+											autocomplete="cc-number"
+											inputmode="numeric"
+										/>
+										<div
+											id="paysys-logos"
+											class="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-6"
+										></div>
+									</div>
+								</label>
+
+								<label class="relative">
+									<div class="relative">
+										<input
+											id="expired"
+											name="expired"
+											type="text"
+											class="flex h-10 w-full bg-transparent px-3 py-1 text-base shadow-sm transition-colors placeholder:text-(--muted-foreground) focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-(--ring) disabled:cursor-not-allowed disabled:opacity-50 md:text-sm border border-t-0 border-(--input) rounded-bl-lg"
+											autocorrect="off"
+											placeholder="MM/YY"
+											spellcheck="false"
+											autocomplete="cc-exp"
+											inputmode="numeric"
+											maxlength="5"
+										/>
+									</div>
+								</label>
+
+								<label class="relative">
+									<div class="relative">
+										<input
+											id="cvv2"
+											name="cvv2"
+											type="tel"
+											class="flex h-10 w-full bg-transparent px-3 py-1 text-base shadow-sm transition-colors placeholder:text-(--muted-foreground) focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-(--ring) disabled:cursor-not-allowed disabled:opacity-50 md:text-sm rounded-br-lg border border-t-0 border-(--input)"
+											autocorrect="off"
+											placeholder="CVV"
+											autocomplete="off"
+											spellcheck="false"
+											inputmode="numeric"
+											minlength="3"
+											maxlength="3"
+										/>
+										<div
+											class="flex gap-x-1 h-6 items-center absolute right-3 top-2"
+										>
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												class="size-4"
+											>
+												<path
+													stroke="none"
+													d="M0 0h24v24H0z"
+													fill="none"
+												/>
+												<path
+													d="M12 19h-6a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v4.5"
+												/>
+												<path d="M3 10h18" />
+												<path d="M7 15h.01" />
+												<path d="M11 15h2" />
+												<path d="M16 19h6" />
+												<path d="M19 16l-3 3l3 3" />
+											</svg>
+										</div>
+									</div>
+								</label>
+							</div>
+
+							<button
+								type="submit"
+								class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-(--ring) disabled:pointer-events-none disabled:opacity-50 bg-(--primary) text-(--primary-foreground) shadow hover:bg-(--primary)/90 h-9 px-4 py-2 w-full [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 cursor-pointer"
+							>
+								Оплатить
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

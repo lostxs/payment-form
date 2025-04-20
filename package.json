@@ -1,0 +1,36 @@
+{
+	"name": "payment-form",
+	"version": "1.0.0",
+	"private": true,
+	"description": "",
+	"license": "ISC",
+	"author": "Denis Okhrimenko",
+	"type": "module",
+	"main": "main.js",
+	"scripts": {
+		"start": "nodemon src/main.js",
+		"db:seed": "node src/db/scripts/seed.js",
+		"db:generate": "drizzle-kit generate",
+		"db:migrate": "drizzle-kit migrate",
+		"db:push": "drizzle-kit push",
+		"db:studio": "drizzle-kit studio"
+	},
+	"dependencies": {
+		"body-parser": "^2.2.0",
+		"dotenv": "^16.5.0",
+		"drizzle-orm": "^0.42.0",
+		"ejs": "^3.1.10",
+		"express": "^5.1.0",
+		"pg": "^8.14.1",
+		"swagger-jsdoc": "^6.2.8",
+		"swagger-ui-express": "^5.0.1",
+		"winston": "^3.17.0",
+		"zod": "^3.24.3"
+	},
+	"devDependencies": {
+		"@trivago/prettier-plugin-sort-imports": "^5.2.2",
+		"drizzle-kit": "^0.31.0",
+		"nodemon": "^3.1.9",
+		"prettier": "^3.5.3"
+	}
+}

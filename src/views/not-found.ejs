@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+		<link rel="stylesheet" href="/css/dark.css" />
+		<title>404</title>
+	</head>
+	<body class="min-w-[375px] flex flex-col items-center size-full">
+		<div
+			class="container flex flex-col items-center justify-center min-h-[70vh] px-4 text-center"
+		>
+			<div class="rounded-full bg-(--muted) p-6 mb-6">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					class="h-16 w-16 text-(--muted-foreground)"
+				>
+					<path d="M12 17h.01" />
+					<path
+						d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"
+					/>
+					<path d="M9.1 9a3 3 0 0 1 5.82 1c0 2-3 3-3 3" />
+				</svg>
+			</div>
+
+			<h1 class="text-4xl font-bold mb-2">404</h1>
+			<h2 class="text-2xl font-semibold mb-4">Страница не найдена</h2>
+
+			<div class="flex flex-col sm:flex-row gap-4">
+				<a
+					href="javascript:history.back()"
+					class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-(--input) bg-(--background) hover:bg-(--accent) hover:text-(--accent-foreground) h-10 px-4 py-2"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="mr-2 h-4 w-4"
+					>
+						<path d="m12 19-7-7 7-7" />
+						<path d="M19 12H5" />
+					</svg>
+					Вернуться назад
+				</a>
+			</div>
+		</div>
+	</body>
+</html>
