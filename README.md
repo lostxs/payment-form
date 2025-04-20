@@ -132,7 +132,7 @@ paymentPageScripts: ['/js/plugins/otp-verification.js']
 - `POST /api/order` — Создание заказа
 - `POST /api/order/calculate-commission` — Расчет комиссии
 - `POST /api/order/proceed` — Исполнение транзакции
-- `GET /api/cards/available-cards` — Конфигурация платежных карт
+- `GET /api/order/available-cards` — Конфигурация платежных карт
 
 ---
 
