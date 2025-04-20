@@ -207,10 +207,7 @@ paymentPageScripts: ['/js/plugins/otp-verification.js']
 
 ## Использование
 
-- Просмотреть таблицы базы данных:  
-  `npm run db:studio`
-
-- Просмотреть swagger документацию:  
+- swagger документация:  
   `http://localhost:4000/api-docs`
 
 - Платежная страница:  
