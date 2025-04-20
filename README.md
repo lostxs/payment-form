@@ -193,11 +193,11 @@ paymentPageScripts: ['/js/plugins/otp-verification.js']
 5. Выполнить миграции и сиды:
 
     ```bash
-    npm run db:push   # или db:generate db:migrate
+    npm run db:push   # или npm run db:generate npm run db:migrate
     npm run db:seed
     ```
 
-6. Просмотреть таблицы БД:
+6. Просмотреть таблицы базы данных:
 
     ```bash
     npm run db:studio
@@ -207,6 +207,12 @@ paymentPageScripts: ['/js/plugins/otp-verification.js']
 
     ```bash
     npm run start
+    ```
+
+8. Просмотреть swagger документацию:
+
+    ```bash
+    http://localhost:4000/api-docs
     ```
 
 ---
