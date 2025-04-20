@@ -131,8 +131,8 @@ paymentPageScripts: ['/js/plugins/otp-verification.js']
 
 - `POST /api/order` — Создание заказа
 - `POST /api/order/calculate-commission` — Расчет комиссии
-- `GET /api/cards/available-cards` — Конфигурация платежных карт
 - `POST /api/order/proceed` — Исполнение транзакции
+- `GET /api/cards/available-cards` — Конфигурация платежных карт
 
 ---
 
@@ -197,27 +197,21 @@ paymentPageScripts: ['/js/plugins/otp-verification.js']
     npm run db:seed
     ```
 
-6. Просмотреть таблицы базы данных:
-
-    ```bash
-    npm run db:studio
-    ```
-
-7. Запустить сервер:
+6. Запустить сервер:
 
     ```bash
     npm run start
     ```
 
-8. Просмотреть swagger документацию:
-
-    ```bash
-    http://localhost:4000/api-docs
-    ```
-
 ---
 
 ## Использование
+
+- Просмотреть таблицы базы данных:  
+  `npm run db:studio`
+
+- Просмотреть swagger документацию:  
+  `http://localhost:4000/api-docs`
 
 - Платежная страница:  
   `GET /order/:id`
